@@ -201,10 +201,10 @@
         .hero-line { overflow: hidden; display: flex; gap: 2vw; }
         .hero-word { display: inline-block; transform: translateY(110%); }
         .hero-subtitle {
-            font-size: 1.25rem;
+            font-size: 1.45rem;
             color: var(--text-gray);
-            max-width: 600px;
-            margin: 0 auto 3rem auto;
+            max-width: 640px;
+            margin: 0 auto 3.5rem auto;
             opacity: 0; transform: translateY(20px);
         }
         
@@ -212,13 +212,13 @@
         .cta-btn {
             pointer-events: auto;
             display: inline-flex; align-items: center; justify-content: center;
-            padding: 1.2rem 3rem;
+            padding: 1.4rem 3.6rem;
             background: transparent;
             border: 2px solid var(--primary);
             color: var(--primary);
             font-family: var(--font-body);
             font-weight: 900;
-            font-size: 1rem;
+            font-size: 1.1rem;
             text-transform: uppercase;
             letter-spacing: 2px;
             border-radius: 50px;
@@ -257,9 +257,23 @@
             background: rgba(0,0,0,0.3);
             backdrop-filter: blur(5px);
         }
-        .val-item { text-align: center; flex: 1; min-width: 250px; }
-        .val-num, .val-icon { font-size: 5rem; color: var(--primary); font-family: var(--font-display); line-height: 1; margin-bottom: 1rem; }
-        .val-text { font-size: 1.1rem; color: var(--text-gray); font-weight: 600; text-transform: uppercase; letter-spacing: 2px;}
+        .val-item { text-align: center; flex: 1; min-width: 200px; }
+        .val-num, .val-icon { font-size: 3.5rem; color: var(--primary); font-family: var(--font-display); line-height: 1; margin-bottom: 0.6rem; }
+        .val-text { font-size: 0.82rem; color: var(--text-gray); font-weight: 600; text-transform: uppercase; letter-spacing: 2px; }
+
+        /* Process Section */
+        #process { padding: 120px 5vw; }
+        .process-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .process-title { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 5rem); line-height: 0.95; text-transform: uppercase; margin-bottom: 1rem; }
+        .process-desc { font-size: 1rem; color: var(--text-gray); max-width: 520px; line-height: 1.7; margin-bottom: 4rem; }
+        .process-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 1100px; }
+        .process-card { background: var(--bg-light); border: 1px solid rgba(255,255,255,0.07); border-radius: 20px; padding: 2rem; transition: border-color 0.3s, transform 0.3s; }
+        .process-card:hover { border-color: rgba(57,255,20,0.3); transform: translateY(-4px); }
+        .process-num { font-family: var(--font-display); font-size: 2.5rem; color: var(--primary); opacity: 0.4; margin-bottom: 1rem; }
+        .process-name { font-family: var(--font-display); font-size: 1.4rem; letter-spacing: 1px; margin-bottom: 0.8rem; }
+        .process-text { font-size: 0.88rem; color: var(--text-gray); line-height: 1.65; }
+        @media (max-width: 900px) { .process-grid { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 600px) { .process-grid { grid-template-columns: 1fr; } }
 
         /* Cases Slider */
         #cases { padding-left: 0; padding-right: 0; overflow: hidden; }
@@ -940,6 +954,21 @@
                 </ul>
                 <button class="pricing-btn magnetic" onclick="selectPlan('Plan Élite')">SELECCIONAR</button>
             </div>
+        </div>
+    </section>
+
+    <!-- Process -->
+    <section id="process" data-bg="#080808">
+        <div class="process-label fade-up">Nuestro método</div>
+        <h2 class="process-title fade-up">¿Cómo sigue<br><span class="text-primary">el proceso?</span></h2>
+        <p class="process-desc fade-up">De la idea a la web online en pasos claros y sin vueltas.</p>
+        <div class="process-grid">
+            <div class="process-card fade-up"><div class="process-num">01</div><div class="process-name">Charla Inicial</div><p class="process-text">Hablamos por WhatsApp para entender tu negocio, objetivos y estilo visual.</p></div>
+            <div class="process-card fade-up"><div class="process-num">02</div><div class="process-name">Propuesta y Estructura</div><p class="process-text">Te presentamos un esquema de navegación y secciones para que des el visto bueno.</p></div>
+            <div class="process-card fade-up"><div class="process-num">03</div><div class="process-name">Diseño y Desarrollo</div><p class="process-text">Construimos tu sitio siguiendo tu identidad de marca, optimizado para celulares.</p></div>
+            <div class="process-card fade-up"><div class="process-num">04</div><div class="process-name">Revisión y Ajustes</div><p class="process-text">Te mostramos la web terminada y hacemos los cambios que necesités.</p></div>
+            <div class="process-card fade-up"><div class="process-num">05</div><div class="process-name">Optimización y Testeo</div><p class="process-text">Pruebas de velocidad y rendimiento para que tu web sea liviana y rápida.</p></div>
+            <div class="process-card fade-up"><div class="process-num">06</div><div class="process-name">Lanzamiento</div><p class="process-text">¡Web online! Te entregamos accesos y te capacitamos para que seas 100% independiente.</p></div>
         </div>
     </section>
 
