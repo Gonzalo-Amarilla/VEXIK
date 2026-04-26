@@ -23,12 +23,10 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background-color: var(--bg-dark); color: var(--text-white); font-family: var(--font-body); overflow-x: hidden; }
 
-        /* Global BG */
         .global-bg-fx { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
         .bg-noise { position: absolute; inset: 0; opacity: 0.04; background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noise"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noise)"/%3E%3C/svg%3E'); }
         .bg-grid { position: absolute; inset: 0; background-size: 60px 60px; background-image: linear-gradient(to right, rgba(57,255,20,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(57,255,20,0.03) 1px, transparent 1px); mask-image: radial-gradient(ellipse at center, black 0%, transparent 80%); -webkit-mask-image: radial-gradient(ellipse at center, black 0%, transparent 80%); }
 
-        /* Nav */
         nav { position: fixed; top: 0; left: 0; width: 100%; padding: 2rem 5vw; display: flex; justify-content: space-between; align-items: center; z-index: 1000; transition: padding 0.4s, background 0.4s, backdrop-filter 0.4s; }
         nav.scrolled { padding: 1rem 5vw; background: rgba(8,8,8,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.05); }
         .logo { font-family: var(--font-display); font-size: 2rem; color: var(--text-white); letter-spacing: 3px; text-decoration: none; }
@@ -39,80 +37,24 @@
         .nav-cta { padding: 0.7rem 1.2rem; background: var(--primary); color: var(--bg-dark); font-family: var(--font-body); font-weight: 900; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; border-radius: 50px; text-decoration: none; transition: all 0.3s; }
         .nav-cta:hover { box-shadow: 0 0 15px var(--primary-glow); transform: scale(1.05); }
 
-        /* Page Hero */
-        .page-hero {
-            position: relative; z-index: 2;
-            height: 100vh; min-height: 600px;
-            display: flex; flex-direction: column;
-            align-items: center; justify-content: center;
-            text-align: center;
-            overflow: hidden;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-        }
-        #hero-canvas-tpl {
-            position: absolute; inset: 0; z-index: 0;
-            pointer-events: none;
-        }
-        .hero-mouse-glow {
-            position: absolute; z-index: 1; pointer-events: none;
-            width: 600px; height: 600px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(57,255,20,0.07) 0%, transparent 70%);
-            transform: translate(-50%, -50%);
-            transition: opacity 0.4s;
-            filter: blur(20px);
-        }
-        .hero-inner {
-            position: relative; z-index: 2;
-            padding: 60px 5vw 0;
-            max-width: 900px;
-        }
-        .page-hero-label {
-            font-family: var(--font-body); font-size: 0.78rem; font-weight: 700;
-            letter-spacing: 3px; text-transform: uppercase; color: var(--primary);
-            margin-bottom: 0.6rem;
-            display: flex; align-items: center; justify-content: center; gap: 0.8rem;
-            opacity: 0; transform: translateY(20px);
-        }
+        .page-hero { position: relative; z-index: 2; height: 100vh; min-height: 600px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; overflow: hidden; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        #hero-canvas-tpl { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+        .hero-mouse-glow { position: absolute; z-index: 1; pointer-events: none; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(57,255,20,0.07) 0%, transparent 70%); transform: translate(-50%, -50%); transition: opacity 0.4s; filter: blur(20px); }
+        .hero-inner { position: relative; z-index: 2; padding: 60px 5vw 0; max-width: 900px; }
+        .page-hero-label { font-family: var(--font-body); font-size: 0.78rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--primary); margin-bottom: 0.6rem; display: flex; align-items: center; justify-content: center; gap: 0.8rem; opacity: 0; transform: translateY(20px); }
         .page-hero-label::before, .page-hero-label::after { content: ''; width: 30px; height: 2px; background: var(--primary); }
-        .page-hero h1 {
-            font-family: var(--font-display);
-            font-size: clamp(3.8rem, 8vw, 8.5rem);
-            line-height: 0.92; text-transform: uppercase;
-            margin-bottom: 1.4rem;
-            overflow: hidden;
-        }
+        .page-hero h1 { font-family: var(--font-display); font-size: clamp(3.8rem, 8vw, 8.5rem); line-height: 0.92; text-transform: uppercase; margin-bottom: 1.4rem; overflow: hidden; }
         .hero-line { display: block; overflow: hidden; }
         .hero-line-inner { display: block; transform: translateY(110%); }
         .hero-line-inner.green { color: var(--primary); }
-        .page-hero-desc {
-            font-size: 1.05rem; color: var(--text-gray);
-            max-width: 500px; margin: 0 auto 0;
-            line-height: 1.7;
-            opacity: 0; transform: translateY(20px);
-        }
-
-        .scroll-indicator {
-            position: absolute; bottom: 0.5rem; left: 50%; transform: translateX(-50%);
-            z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
-            opacity: 0;
-        }
+        .page-hero-desc { font-size: 1.05rem; color: var(--text-gray); max-width: 500px; margin: 0 auto 0; line-height: 1.7; opacity: 0; transform: translateY(20px); }
+        .scroll-indicator { position: absolute; bottom: 0.5rem; left: 50%; transform: translateX(-50%); z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 0.6rem; opacity: 0; }
         .scroll-indicator span { font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: var(--text-gray); }
-        .scroll-line {
-            width: 1px; height: 50px;
-            background: linear-gradient(to bottom, var(--primary), transparent);
-            animation: scrollPulse 2s ease-in-out infinite;
-        }
-        @keyframes scrollPulse {
-            0%,100% { transform: scaleY(1); opacity: 1; }
-            50% { transform: scaleY(0.5); opacity: 0.3; }
-        }
+        .scroll-line { width: 1px; height: 50px; background: linear-gradient(to bottom, var(--primary), transparent); animation: scrollPulse 2s ease-in-out infinite; }
+        @keyframes scrollPulse { 0%,100% { transform: scaleY(1); opacity: 1; } 50% { transform: scaleY(0.5); opacity: 0.3; } }
 
-        /* Templates Grid */
         .templates-section { position: relative; z-index: 2; padding: 100px 5vw 150px; }
         .templates-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2.5rem; }
-
-        /* Template Card */
         a.template-card { text-decoration: none; color: inherit; }
         .template-card { background: var(--bg-mid); border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,255,255,0.06); display: flex; flex-direction: column; transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), border-color 0.4s, box-shadow 0.4s; cursor: pointer; }
         .template-card:hover { transform: translateY(-12px); border-color: rgba(57,255,20,0.25); box-shadow: 0 30px 60px rgba(0,0,0,0.5), 0 0 40px rgba(57,255,20,0.07); }
@@ -138,7 +80,6 @@
         .template-card.featured-tpl .template-buy-btn .btn-txt { color: var(--bg-dark); }
         .template-card.featured-tpl:hover .template-buy-btn { box-shadow: 0 0 20px var(--primary-glow); }
 
-        /* Footer */
         footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.06); position: relative; z-index: 2; }
         .footer-main { padding: 60px 5vw 40px; display: flex; justify-content: space-between; align-items: flex-start; gap: 3rem; flex-wrap: wrap; }
         .footer-logo { font-family: var(--font-display); font-size: 2.5rem; color: var(--text-white); letter-spacing: 4px; text-decoration: none; }
@@ -154,53 +95,18 @@
         .footer-bottom a { color: #444; text-decoration: none; transition: color 0.3s; }
         .footer-bottom a:hover { color: var(--text-gray); }
 
-        /* Responsive */
         @media (max-width: 1024px) { .nav-links { display: none; } }
-        @media (max-width: 768px) {
-            .templates-grid { grid-template-columns: 1fr; }
-            .page-hero { padding: 90px 5vw 60px; }
-            .footer-nav { gap: 2rem; }
-            .footer-main { flex-direction: column; gap: 2.5rem; }
-        }
+        @media (max-width: 768px) { .templates-grid { grid-template-columns: 1fr; } .footer-nav { gap: 2rem; } .footer-main { flex-direction: column; gap: 2.5rem; } }
 
-        /* --- HAMBURGER & MOBILE MENU --- */
-        .hamburger {
-            display: none; flex-direction: column; justify-content: center;
-            gap: 6px; background: none; border: none; cursor: pointer;
-            padding: 8px; z-index: 1002;
-        }
-        .hamburger span {
-            display: block; width: 24px; height: 2px;
-            background: var(--text-white);
-            transition: all 0.35s cubic-bezier(0.16,1,0.3,1);
-            transform-origin: center;
-        }
+        .hamburger { display: none; flex-direction: column; justify-content: center; gap: 6px; background: none; border: none; cursor: pointer; padding: 8px; z-index: 1002; }
+        .hamburger span { display: block; width: 24px; height: 2px; background: var(--text-white); transition: all 0.35s cubic-bezier(0.16,1,0.3,1); transform-origin: center; }
         .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
         .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
         .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-        .mobile-menu {
-            position: fixed; inset: 0; z-index: 1001;
-            background: rgba(8,8,8,0.97);
-            backdrop-filter: blur(24px);
-            display: flex; flex-direction: column;
-            align-items: center; justify-content: center;
-            gap: 0.5rem;
-            transform: translateY(-100%);
-            transition: transform 0.55s cubic-bezier(0.16,1,0.3,1);
-        }
+        .mobile-menu { position: fixed; inset: 0; z-index: 1001; background: rgba(8,8,8,0.97); backdrop-filter: blur(24px); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; transform: translateY(-100%); transition: transform 0.55s cubic-bezier(0.16,1,0.3,1); }
         .mobile-menu.open { transform: translateY(0); }
-        .mobile-nav-link {
-            font-family: var(--font-display);
-            font-size: clamp(2.5rem, 10vw, 4rem);
-            color: var(--text-white); text-decoration: none;
-            letter-spacing: 3px; text-transform: uppercase;
-            padding: 0.4rem 1.5rem;
-            transition: color 0.25s;
-            opacity: 0; transform: translateY(20px);
-        }
-        .mobile-menu.open .mobile-nav-link {
-            animation: mobileItemIn 0.5s cubic-bezier(0.16,1,0.3,1) forwards;
-        }
+        .mobile-nav-link { font-family: var(--font-display); font-size: clamp(2.5rem, 10vw, 4rem); color: var(--text-white); text-decoration: none; letter-spacing: 3px; text-transform: uppercase; padding: 0.4rem 1.5rem; transition: color 0.25s; opacity: 0; transform: translateY(20px); }
+        .mobile-menu.open .mobile-nav-link { animation: mobileItemIn 0.5s cubic-bezier(0.16,1,0.3,1) forwards; }
         .mobile-nav-link:nth-child(1) { animation-delay: 0.05s; }
         .mobile-nav-link:nth-child(2) { animation-delay: 0.1s; }
         .mobile-nav-link:nth-child(3) { animation-delay: 0.15s; }
@@ -208,23 +114,10 @@
         .mobile-nav-link:nth-child(5) { animation-delay: 0.25s; }
         .mobile-nav-link:nth-child(6) { animation-delay: 0.3s; }
         .mobile-nav-link:hover { color: var(--primary); }
-        .mobile-nav-cta {
-            margin-top: 1.5rem;
-            padding: 1rem 2.5rem;
-            background: var(--primary); color: var(--bg-dark);
-            font-family: var(--font-body); font-weight: 900;
-            font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase;
-            border-radius: 50px; text-decoration: none;
-            opacity: 0; transform: translateY(20px);
-        }
-        .mobile-menu.open .mobile-nav-cta {
-            animation: mobileItemIn 0.5s 0.35s cubic-bezier(0.16,1,0.3,1) forwards;
-        }
+        .mobile-nav-cta { margin-top: 1.5rem; padding: 1rem 2.5rem; background: var(--primary); color: var(--bg-dark); font-family: var(--font-body); font-weight: 900; font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; border-radius: 50px; text-decoration: none; opacity: 0; transform: translateY(20px); }
+        .mobile-menu.open .mobile-nav-cta { animation: mobileItemIn 0.5s 0.35s cubic-bezier(0.16,1,0.3,1) forwards; }
         @keyframes mobileItemIn { to { opacity: 1; transform: translateY(0); } }
-        @media (max-width: 1024px) {
-            .hamburger { display: flex; }
-            .nav-cta { display: none; }
-        }
+        @media (max-width: 1024px) { .hamburger { display: flex; } .nav-cta { display: none; } }
     </style>
 </head>
 <body>
@@ -233,39 +126,35 @@
         <div class="bg-grid"></div>
     </div>
 
-    <!-- Navbar -->
     <nav id="navbar">
-        <a href="index.html" class="logo">VEXIK</a>
+        <a href="../" class="logo">VEXIK</a>
         <div class="nav-links">
-            <a href="index.html#hero" class="nav-link">Inicio</a>
-            <a href="index.html#cases" class="nav-link">Proyectos</a>
-            <a href="index.html#services" class="nav-link">Servicios</a>
-            <a href="index.html#about" class="nav-link">Sobre Nosotros</a>
-            <a href="plantillas.html" class="nav-link" style="color: var(--primary);">Plantillas</a>
-            <a href="index.html#contact" class="nav-link">Contacto</a>
+            <a href="../#hero" class="nav-link">Inicio</a>
+            <a href="../#cases" class="nav-link">Proyectos</a>
+            <a href="../#services" class="nav-link">Servicios</a>
+            <a href="../#about" class="nav-link">Sobre Nosotros</a>
+            <a href="../plantillas/" class="nav-link" style="color: var(--primary);">Plantillas</a>
+            <a href="../#contact" class="nav-link">Contacto</a>
         </div>
-        <a href="index.html#contact" class="nav-cta">Quiero mi web</a>
+        <a href="../#contact" class="nav-cta">Quiero mi web</a>
         <button class="hamburger" id="hamburger" aria-label="Abrir menú">
             <span></span><span></span><span></span>
         </button>
     </nav>
 
-    <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobile-menu">
-        <a href="index.html" class="mobile-nav-link">Inicio</a>
-        <a href="index.html#cases" class="mobile-nav-link">Proyectos</a>
-        <a href="index.html#services" class="mobile-nav-link">Servicios</a>
-        <a href="index.html#about" class="mobile-nav-link">Nosotros</a>
-        <a href="plantillas.html" class="mobile-nav-link">Plantillas</a>
-        <a href="index.html#contact" class="mobile-nav-link">Contacto</a>
+        <a href="../" class="mobile-nav-link">Inicio</a>
+        <a href="../#cases" class="mobile-nav-link">Proyectos</a>
+        <a href="../#services" class="mobile-nav-link">Servicios</a>
+        <a href="../#about" class="mobile-nav-link">Nosotros</a>
+        <a href="../plantillas/" class="mobile-nav-link">Plantillas</a>
+        <a href="../#contact" class="mobile-nav-link">Contacto</a>
         <a href="https://wa.me/5491162064721" target="_blank" rel="noopener noreferrer" class="mobile-nav-cta">Quiero mi web</a>
     </div>
 
-    <!-- Page Hero -->
     <header class="page-hero">
         <canvas id="hero-canvas-tpl"></canvas>
         <div class="hero-mouse-glow" id="heroGlow"></div>
-
         <div class="hero-inner">
             <div class="page-hero-label">Plantillas Premium</div>
             <h1>
@@ -274,21 +163,17 @@
             </h1>
             <p class="page-hero-desc">Sitios web completos diseñados por VEXIK. Comprá, personalizá y lanzá tu presencia digital en tiempo récord.</p>
         </div>
-
         <div class="scroll-indicator" id="scrollInd">
             <span>Scroll</span>
             <div class="scroll-line"></div>
         </div>
     </header>
 
-    <!-- Templates -->
     <section class="templates-section">
         <div class="templates-grid">
-
-            <!-- Ciberseguridad -->
             <a href="https://payhip.com/b/3IywP" target="_blank" rel="noopener noreferrer" class="template-card featured-tpl">
                 <div class="template-img-wrap">
-                    <img src="UI Kit para Ciberseguridad Sitio web completo de 10 páginas.jpg" alt="Plantilla Ciberseguridad">
+                    <img src="../UI Kit para Ciberseguridad Sitio web completo de 10 páginas.jpg" alt="Plantilla Ciberseguridad">
                     <div class="template-badge">⭐ Más vendido</div>
                     <div class="template-overlay"></div>
                 </div>
@@ -310,10 +195,9 @@
                 </div>
             </a>
 
-            <!-- Evento Deportivo -->
             <a href="https://payhip.com/b/8Df7w" target="_blank" rel="noopener noreferrer" class="template-card">
                 <div class="template-img-wrap">
-                    <img src="landingpage-evento-deportivo.jpg" alt="Plantilla Evento Deportivo">
+                    <img src="../landingpage-evento-deportivo.jpg" alt="Plantilla Evento Deportivo">
                     <div class="template-overlay"></div>
                 </div>
                 <div class="template-body">
@@ -334,10 +218,9 @@
                 </div>
             </a>
 
-            <!-- Asesoría Fiscal -->
             <a href="https://payhip.com/b/Er8hd" target="_blank" rel="noopener noreferrer" class="template-card">
                 <div class="template-img-wrap">
-                    <img src="landing-page-asesoria-fiscal.jpg" alt="Plantilla Asesoría Fiscal">
+                    <img src="../landing-page-asesoria-fiscal.jpg" alt="Plantilla Asesoría Fiscal">
                     <div class="template-overlay"></div>
                 </div>
                 <div class="template-body">
@@ -357,27 +240,25 @@
                     </div>
                 </div>
             </a>
-
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-main">
             <div>
-                <a href="index.html" class="footer-logo">VEX<span>IK</span></a>
+                <a href="../" class="footer-logo">VEX<span>IK</span></a>
                 <p class="footer-tagline">Diseño web de alto rendimiento para marcas que quieren dominar. Buenos Aires, Argentina.</p>
             </div>
             <div class="footer-nav">
                 <div>
                     <p class="footer-col-title">Navegación</p>
                     <ul class="footer-links">
-                        <li><a href="index.html">Inicio</a></li>
-                        <li><a href="index.html#cases">Proyectos</a></li>
-                        <li><a href="index.html#services">Servicios</a></li>
-                        <li><a href="index.html#about">Sobre Nosotros</a></li>
-                        <li><a href="plantillas.html">Plantillas</a></li>
-                        <li><a href="index.html#contact">Contacto</a></li>
+                        <li><a href="../">Inicio</a></li>
+                        <li><a href="../#cases">Proyectos</a></li>
+                        <li><a href="../#services">Servicios</a></li>
+                        <li><a href="../#about">Sobre Nosotros</a></li>
+                        <li><a href="../plantillas/">Plantillas</a></li>
+                        <li><a href="../#contact">Contacto</a></li>
                     </ul>
                 </div>
                 <div>
@@ -402,11 +283,9 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script>
-        // --- NAVBAR SCROLL ---
         const nav = document.getElementById('navbar');
         window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
 
-        // --- HAMBURGER MENU ---
         const hamburger = document.getElementById('hamburger');
         const mobileMenu = document.getElementById('mobile-menu');
         hamburger.addEventListener('click', () => {
@@ -422,14 +301,12 @@
             });
         });
 
-        // --- GSAP HERO ENTRANCE ---
         const tl = gsap.timeline({ delay: 0.2 });
         tl.to('.page-hero-label', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' })
           .to('.hero-line-inner', { y: '0%', duration: 1, stagger: 0.12, ease: 'power4.out' }, '-=0.4')
           .to('.page-hero-desc', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.5')
           .to('#scrollInd', { opacity: 1, duration: 0.6 }, '-=0.2');
 
-        // --- MOUSE GLOW TRACKING ---
         const glow = document.getElementById('heroGlow');
         const hero = document.querySelector('.page-hero');
         hero.addEventListener('mousemove', (e) => {
@@ -438,36 +315,22 @@
             glow.style.top  = (e.clientY - rect.top)  + 'px';
         });
 
-        // --- CANVAS PARTICLES ---
         const canvas = document.getElementById('hero-canvas-tpl');
         const ctx = canvas.getContext('2d');
         let W, H, particles = [], mouse = { x: -999, y: -999 };
 
-        function resize() {
-            W = canvas.width  = hero.offsetWidth;
-            H = canvas.height = hero.offsetHeight;
-        }
+        function resize() { W = canvas.width = hero.offsetWidth; H = canvas.height = hero.offsetHeight; }
         resize();
         window.addEventListener('resize', () => { resize(); init(); });
 
-        hero.addEventListener('mousemove', (e) => {
-            const r = hero.getBoundingClientRect();
-            mouse.x = e.clientX - r.left;
-            mouse.y = e.clientY - r.top;
-        });
+        hero.addEventListener('mousemove', (e) => { const r = hero.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; });
         hero.addEventListener('mouseleave', () => { mouse.x = -999; mouse.y = -999; });
 
         function init() {
             particles = [];
             const count = Math.floor((W * H) / 14000);
             for (let i = 0; i < count; i++) {
-                particles.push({
-                    x: Math.random() * W, y: Math.random() * H,
-                    ox: 0, oy: 0,
-                    size: Math.random() * 1.5 + 0.5,
-                    alpha: Math.random() * 0.4 + 0.1,
-                    speed: Math.random() * 0.3 + 0.1
-                });
+                particles.push({ x: Math.random() * W, y: Math.random() * H, ox: 0, oy: 0, size: Math.random() * 1.5 + 0.5, alpha: Math.random() * 0.4 + 0.1, speed: Math.random() * 0.3 + 0.1 });
             }
         }
         init();
@@ -475,27 +338,16 @@
         function drawParticles() {
             ctx.clearRect(0, 0, W, H);
             particles.forEach(p => {
-                // Drift slowly
                 p.y -= p.speed;
                 if (p.y < -5) { p.y = H + 5; p.x = Math.random() * W; }
-
-                // Mouse repulsion
                 const dx = p.x - mouse.x, dy = p.y - mouse.y;
                 const dist = Math.sqrt(dx*dx + dy*dy);
                 const repel = 120;
-                if (dist < repel) {
-                    const force = (repel - dist) / repel;
-                    p.ox += dx / dist * force * 2;
-                    p.oy += dy / dist * force * 2;
-                }
+                if (dist < repel) { const force = (repel - dist) / repel; p.ox += dx / dist * force * 2; p.oy += dy / dist * force * 2; }
                 p.ox *= 0.92; p.oy *= 0.92;
-
                 const rx = p.x + p.ox, ry = p.y + p.oy;
-
-                // Color: green near mouse, gray otherwise
                 const nearness = Math.max(0, 1 - dist / 200);
                 const r = Math.round(57 * nearness), g = Math.round(255 * nearness + 163 * (1 - nearness)), b = Math.round(20 * nearness);
-
                 ctx.beginPath();
                 ctx.arc(rx, ry, p.size, 0, Math.PI * 2);
                 ctx.fillStyle = `rgba(${r},${g},${b},${p.alpha + nearness * 0.5})`;
